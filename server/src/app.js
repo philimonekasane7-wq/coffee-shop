@@ -9,7 +9,10 @@ const authRoutes = require("./routes/authRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 
 app.use(cors({
-  origin: process.env.CLIENT_ORIGIN || "http://localhost:5173"
+  origin: [
+    "http://localhost:5173",
+    process.env.CLIENT_ORIGIN
+  ].filter(Boolean)
 }));
 
 app.use(express.json());
