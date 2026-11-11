@@ -45,8 +45,15 @@ function Notice({ kind, onClose, children }) {
 }
 
 function StatusBadge({ status }) {
+  const safeStatus =
+    typeof status === "string" && status.trim()
+      ? status
+      : "Unknown";
+
   return (
-    <span className={`badge badge-${status.toLowerCase()}`}>{status}</span>
+    <span className={`badge badge-${safeStatus.toLowerCase()}`}>
+      {safeStatus}
+    </span>
   );
 }
 
@@ -264,7 +271,7 @@ export default function App() {
         })
       });
 
-      setLastOrder(order);
+      setLastOrder(order.order);
       setCart([]);
       setCustomerName("");
       setCustomerContact("");
